@@ -14,6 +14,14 @@ export interface UseTokenVaultAuthOptions {
   apiBasePath?: string;
 }
 
+export interface UseTokenVaultAuthReturn {
+  status: AuthStatus;
+  errorMessage: string | undefined;
+  /** URL where the user can view/control the remote browser session. Only set during browser_login flow. */
+  liveViewUrl: string | null;
+  connect: () => void;
+}
+
 export function useTokenVaultAuth(opts: UseTokenVaultAuthOptions) {
   const {
     providerId,
@@ -24,6 +32,7 @@ export function useTokenVaultAuth(opts: UseTokenVaultAuthOptions) {
 
   const [status, setStatus] = useState<AuthStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [liveViewUrl, setLiveViewUrl] = useState<string | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -87,7 +96,13 @@ export function useTokenVaultAuth(opts: UseTokenVaultAuthOptions) {
         return;
       }
 
-      const { sessionId, loginSuccessUrlPattern } = await startRes.json();
+      const { sessionId, loginSuccessUrlPattern, liveViewUrl: viewUrl } =
+        await startRes.json();
+
+      // If the server returned a live view URL, expose it so the UI can show it
+      if (viewUrl) {
+        setLiveViewUrl(viewUrl);
+      }
 
       pollRef.current = setInterval(async () => {
         try {
@@ -134,7 +149,7 @@ export function useTokenVaultAuth(opts: UseTokenVaultAuthOptions) {
 
   const connect = authMethod === 'oauth2' ? startOAuth : startBrowserLogin;
 
-  return { status, errorMessage, connect };
+  return { status, errorMessage, liveViewUrl, connect };
 }
 
 // ── useCredentials ──

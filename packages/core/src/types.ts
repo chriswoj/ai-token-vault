@@ -159,6 +159,8 @@ export interface BrowserLoginSession {
   loginSuccessUrlPattern: string | null;
   loginDetectionStrategy: LoginDetectionStrategy | null;
   authEndpoint: string | null;
+  /** URL the user can open to view/control the remote browser session (e.g. Browserbase live view, noVNC). */
+  liveViewUrl?: string | null;
 }
 
 export interface BrowserLoginStatus {

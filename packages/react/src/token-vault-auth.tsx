@@ -24,7 +24,7 @@ export function TokenVaultAuth({
   apiBasePath,
   className,
 }: TokenVaultAuthProps) {
-  const { status, errorMessage, connect } = useTokenVaultAuth({
+  const { status, errorMessage, liveViewUrl, connect } = useTokenVaultAuth({
     providerId,
     authMethod,
     onAuthComplete,
@@ -72,11 +72,33 @@ export function TokenVaultAuth({
           )}
 
           {status === 'connecting' && (
-            <p style={{ margin: '8px 0 0', fontSize: '14px', color: '#6b7280' }}>
-              {authMethod === 'oauth2'
-                ? 'Waiting for authorization...'
-                : 'Browser opened - please log in...'}
-            </p>
+            <div style={{ marginTop: '8px' }}>
+              <p style={{ margin: 0, fontSize: '14px', color: '#6b7280' }}>
+                {authMethod === 'oauth2'
+                  ? 'Waiting for authorization...'
+                  : 'Browser session started — log in to continue.'}
+              </p>
+              {liveViewUrl && (
+                <a
+                  href={liveViewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    marginTop: '6px',
+                    padding: '6px 12px',
+                    fontSize: '13px',
+                    fontWeight: 500,
+                    color: '#fff',
+                    backgroundColor: '#2563eb',
+                    borderRadius: '6px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Open browser to log in
+                </a>
+              )}
+            </div>
           )}
 
           {status === 'success' && (

@@ -251,6 +251,7 @@ export function createTokenVaultHandlers(config: TokenVaultHandlersConfig) {
         loginSuccessUrlPattern: provider.loginSuccessUrlPattern,
         loginDetectionStrategy: provider.loginDetectionStrategy,
         authEndpoint: provider.authEndpoint,
+        liveViewUrl: loginSession.liveViewUrl ?? null,
       });
     },
 
