@@ -1,0 +1,30 @@
+{
+  "name": "@ai-token-vault/mastra",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@ai-token-vault/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@mastra/core": ">=0.5.0",
+    "zod": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@mastra/core": "^0.5.0",
+    "zod": "^3.23.0",
+    "typescript": "^5.7.0"
+  }
+}

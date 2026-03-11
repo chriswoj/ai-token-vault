@@ -1,0 +1,24 @@
+{
+  "name": "@ai-token-vault/example",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Example app - run with next build'",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .next"
+  },
+  "dependencies": {
+    "@ai-token-vault/core": "workspace:*",
+    "@ai-token-vault/drizzle": "workspace:*",
+    "@ai-token-vault/mastra": "workspace:*",
+    "@ai-token-vault/next": "workspace:*",
+    "@ai-token-vault/react": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

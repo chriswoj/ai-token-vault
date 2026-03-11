@@ -1,0 +1,28 @@
+{
+  "name": "@ai-token-vault/drizzle",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@ai-token-vault/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "drizzle-orm": ">=0.36.0"
+  },
+  "devDependencies": {
+    "drizzle-orm": "^0.38.0",
+    "typescript": "^5.7.0"
+  }
+}
